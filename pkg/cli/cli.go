@@ -6,6 +6,7 @@ import (
 	"io"
 	"strings"
 
+	"github.com/brotherlogic/newci/internal/seam"
 	"github.com/brotherlogic/newci/internal/vault"
 )
 
@@ -106,6 +107,15 @@ func Run(args []string, stdout, stderr io.Writer) int {
 			return 2
 		}
 
+		if err := seam.CheckFeature(*dir, feature); err != nil {
+			fmt.Fprintf(stderr, "error: %v\n", err)
+			return 1
+		}
+		if _, err := seam.CheckAll(*dir); err != nil {
+			fmt.Fprintf(stderr, "error: %v\n", err)
+			return 1
+		}
+
 		cap, err := vault.Seal(*dir, feature, 0, 0)
 		if err != nil {
 			fmt.Fprintf(stderr, "error: %v\n", err)
@@ -132,6 +142,24 @@ func Run(args []string, stdout, stderr io.Writer) int {
 				}
 			}
 		}
+		return 0
+
+	case "seam-check":
+		if len(cmdArgs) > 0 {
+			feature := cmdArgs[0]
+			if err := seam.CheckFeature(*dir, feature); err != nil {
+				fmt.Fprintf(stderr, "error: %v\n", err)
+				return 1
+			}
+			fmt.Fprintf(stdout, "Seam check OK for feature %q\n", feature)
+			return 0
+		}
+		features, err := seam.CheckAll(*dir)
+		if err != nil {
+			fmt.Fprintf(stderr, "error: %v\n", err)
+			return 1
+		}
+		fmt.Fprintf(stdout, "Seam check OK (%d feature pair(s) verified)\n", len(features))
 		return 0
 
 	default:

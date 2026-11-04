@@ -1,0 +1,9 @@
+{
+  "feature": "seam-check",
+  "spec_sha256": "10aab0a8f580d642b5d0328d719927561a1ddad6b2604d5aff3c4c833c75249b",
+  "test_sha256": "c269ea91f6b2cc900b21f94d47776ac1cbaf88c423fc2ee399670557de68a68b",
+  "mutants_killed": 0,
+  "mutants_total": 0,
+  "unlocked": false,
+  "locked_at": "2026-11-04T01:35:20.867397039Z"
+}
