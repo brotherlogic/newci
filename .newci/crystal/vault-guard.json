@@ -1,0 +1,9 @@
+{
+  "feature": "vault-guard",
+  "spec_sha256": "c84f73a86df16f0dd8d9fe1a9f67d9dd124df6020890eccbe74f53eec70dbb2f",
+  "test_sha256": "6fb98a144b7d36a71cb54f5faf6a2116ffc577eefe35e334760d1bc9c2c08f8d",
+  "mutants_killed": 0,
+  "mutants_total": 0,
+  "unlocked": false,
+  "locked_at": "2026-11-04T01:20:52.372510615Z"
+}
